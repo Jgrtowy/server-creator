@@ -1,0 +1,1 @@
+start cmd /k "C:/Progra~1/Java/jre1.8.0_341/bin/java.exe -Xms2G -Xmx4G -jar C:\Users\panjo\Desktop\Workspace\server-creator-master\server\forge-1.12.2-14.23.5.2859.jar"
