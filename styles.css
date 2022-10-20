@@ -18,3 +18,7 @@ select:disabled{
      opacity: 1;
      /* background-color: #242424; */
 }
+#editor{
+     width: 100px;
+     height: 100px;
+}
