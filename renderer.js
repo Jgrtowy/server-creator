@@ -5,8 +5,6 @@ const { CLIENT_RENEG_LIMIT } = require('tls');
 const { shell } = require('electron');
 let configPath = "./appconfig.json"
 let config = JSON.parse(fs.readFileSync(configPath));
-const Quill = require('quill');
-const { clearScreenDown } = require('readline');
 
 
 const javaVer = document.querySelector("[data-javaVer]");
@@ -88,14 +86,24 @@ document.querySelector('[data-stop]').addEventListener('click', ()=>{
 })
 
 // File browser
-
+var data;
 fs.readdir('./server/', (err, serverDirectory) => {
   glob('./server/+(*.json|*.properties|*.txt)', {}, (err, serverDirectory)=>{
     for(var i = 0; i<serverDirectory.length;i++){
       serverDirectory[i] = serverDirectory[i].replace('./server/', '')
-      serverDirectoryContent += '<a value="'+i+'" data-files>'+serverDirectory[i]+'</a><br>';
+      serverDirectoryContent += '<input type="button" class="browser-content" value="'+serverDirectory[i]+'"><br>';
     }
     document.querySelector('[data-browser]').innerHTML = serverDirectoryContent
-    console.dir(serverDirectory)
+    document.querySelectorAll(".browser-content").forEach(browserFile => browserFile.addEventListener("click", ()=>{
+      data = fs.readFileSync("./server/"+browserFile.value, {encoding:'utf-8'});
+      document.querySelector('[data-editor]').innerHTML = data
+      document.querySelector("[data-save]").addEventListener('click', ()=>{
+        let changes = document.querySelector('[data-editor]').innerHTML
+        let success = document.querySelector('[data-success]')
+        fs.writeFileSync('./server/'+browserFile.value, changes);
+        success.innerHTML = "Changes saved"
+        
+      })
+    }));
   });
 });

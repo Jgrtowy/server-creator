@@ -19,6 +19,12 @@ select:disabled{
      /* background-color: #242424; */
 }
 #editor{
-     width: 100px;
-     height: 100px;
+     width:600px;
+     height: 600px;
+     background-color: #242424;
+     color:#fff;
+}
+#editor::placeholder{
+     color:#c8c8c8;
+
 }

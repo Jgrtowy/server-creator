@@ -13,11 +13,12 @@
     <input type="checkbox" name="remember" data-remember>Remember settings <br>  
     <input type="button" value="Start" data-bs-start><br>
     <input type="button" value="Stop" data-stop><br>
-
+    
     <div data-browser>
-
     </div>
-    <div id="editor" data-editor></div>
-    <script defer src="./renderer.js"></script>
+    <textarea id="editor" data-editor placeholder="Select file above to edit it"></textarea><br>
+    <input type="button" value="Save" data-save>
+    <span data-success></span>
+    <script defer src="./renderer.js" type="module"></script>
   </body>
 </html>
