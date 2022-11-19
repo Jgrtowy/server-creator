@@ -1,0 +1,1 @@
+start cmd /k "ngrok tcp 25565"

@@ -1,2 +1,2 @@
-@REM @echo off
+@echo off
 start cmd /k "npm start"
