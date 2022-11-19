@@ -46,7 +46,7 @@ fs.readdir('./server/', (err, serverFiles) => {
 });
 
 document.querySelector("[data-load]").addEventListener('click', () => {
-  console.dir(config);
+  // console.dir(config);
   document.querySelector('[data-javaVer]').value = config.java;
   document.querySelector('[data-serverFile]').value = config.server;
 })
