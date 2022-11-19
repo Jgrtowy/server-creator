@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link href="./styles.css" rel="stylesheet">
-    <title>Hello World!</title>
+    
+    <title>Minecraft server creator</title>
   </head>
   <body>
+  <section id="main">
     <input type="button" value="Load settings" data-load><br>
     <select data-javaVer></select><br>
     <select data-serverFile></select><br>
-    <input type="checkbox" name="remember" data-remember>Remember settings <br>  
-    <input type="button" value="Start" data-bs-start><br>
+    <input type="checkbox" name="remember" data-remember><span id="remember">Remember settings </span><br>  
+    <input type="button" value="Start" data-bs-start>
     <input type="button" value="Stop" data-stop><br>
-    
-    <div data-browser>
+  </section>
+    <!-- <div data-browser>
     </div>
     <textarea id="editor" data-editor placeholder="Select file above to edit it"></textarea><br>
-    <input type="button" value="Save" data-save>
+    <input type="button" value="Save" data-save> -->
     <span data-success></span>
     <script defer src="./renderer.js" type="module"></script>
   </body>

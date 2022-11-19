@@ -14,8 +14,6 @@ if (!fs.existsSync('./server/')){
   fs.mkdirSync('./server/');
 }
 
-
-
 fs.readdir('C:/Progra~1/Java', (err, files) => {
   if (files.length == 0) {
     document.querySelector('[data-javaVer]').innerHTML = '<option>Java not found</option>';
@@ -85,25 +83,24 @@ document.querySelector('[data-stop]').addEventListener('click', ()=>{
   shell.openPath(__dirname+'\\batches\\stop.bat');
 })
 
-// File browser
-var data;
-fs.readdir('./server/', (err, serverDirectory) => {
-  glob('./server/+(*.json|*.properties|*.txt)', {}, (err, serverDirectory)=>{
-    for(var i = 0; i<serverDirectory.length;i++){
-      serverDirectory[i] = serverDirectory[i].replace('./server/', '')
-      serverDirectoryContent += '<input type="button" class="browser-content" value="'+serverDirectory[i]+'"><br>';
-    }
-    document.querySelector('[data-browser]').innerHTML = serverDirectoryContent
-    document.querySelectorAll(".browser-content").forEach(browserFile => browserFile.addEventListener("click", ()=>{
-      data = fs.readFileSync("./server/"+browserFile.value, {encoding:'utf-8'});
-      document.querySelector('[data-editor]').innerHTML = data
-      document.querySelector("[data-save]").addEventListener('click', ()=>{
-        let changes = document.querySelector('[data-editor]').innerHTML
-        let success = document.querySelector('[data-success]')
-        fs.writeFileSync('./server/'+browserFile.value, changes);
-        success.innerHTML = "Changes saved"
-        
-      })
-    }));
-  });
-});
+// File browser 
+
+// fs.readdir('./server/', (err, serverDirectory) => {
+//   glob('./server/+(*.json|*.properties|*.txt)', {}, (err, serverDirectory)=>{
+//     for(var i = 0; i<serverDirectory.length;i++){
+//       serverDirectory[i] = serverDirectory[i].replace('./server/', '')
+//       serverDirectoryContent += '<input type="button" class="browser-content" value="'+serverDirectory[i]+'"><br>';
+//     }
+//     document.querySelector('[data-browser]').innerHTML = serverDirectoryContent
+//     document.querySelectorAll(".browser-content").forEach(browserFile => browserFile.addEventListener("click", ()=>{
+//       data = fs.readFileSync("./server/"+browserFile.value, {encoding:'utf-8'});
+//       document.querySelector('[data-editor]').innerHTML = data
+//       document.querySelector("[data-save]").addEventListener('click', ()=>{
+//         let changes = document.querySelector('[data-editor]').innerHTML
+//         let success = document.querySelector('[data-success]')
+//         fs.writeFileSync('./server/'+browserFile.value, changes);
+//         success.innerHTML = "Changes saved"
+//       })
+//     }));
+//   });
+// });
