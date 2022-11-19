@@ -1,4 +1,6 @@
 {
-  "java": "jre1.8.0_341",
-  "server": "forge-1.12.2-14.23.5.2859.jar"
+  "java": "jdk-17.0.4.1",
+  "server": "server.jar",
+  "ramMin": "3",
+  "ramMax": "5"
 }

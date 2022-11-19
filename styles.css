@@ -59,11 +59,17 @@ input[type="checkbox"]{
 [data-load]{
      margin-left: 7rem !important; 
 }
-#remember{
+span{
      text-shadow: #000 1.6px 1.2px;
 }
 input[type="button"]:active{
      background-color: #acacad;
      transition-duration: .05s;
      box-shadow: #242424 0 0;
+}
+[data-min], [data-max]{
+     width: 4rem;
+     border: .03rem solid #000;
+     border-radius: .3rem;
+     padding-left: .2rem;
 }
