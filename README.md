@@ -11,10 +11,11 @@
 
 ## **Dependencies**
 
-- Node.js
-- npm
-- git (optional)
-- Minecraft server file
+* Node.js
+* npm
+* git (optional but highly recommended)
+* Minecraft server file
+* ngrok account and token (optional)
 
 ## **Installation**
 
@@ -26,13 +27,19 @@ b) Download zip from *"Code"* button on top of github page.
 
 c) Install it through *"Github Desktop*" app (if you have it installed).
 
-After downloading files to destination folder. Open cmd (by typing *cmd* in folder path bar) in this directory and type following command:
-
-``npm i && npm start``
+After downloading files to destination folder open *"First start.bat"*, this will install dependencies, open up the app and ask you for your ngrok authtoken, if you don't want to use ngrok just click *CTRL+C*.
 
 ## **Running**
 
-After running last command. Open the installation folder in explorer and put MC server file into newly created *"server"* folder. 
+After running *"First start.bat"* open the installation folder by clicking *"Open server folder"* button in app and put MC server file here.
+
+You can find official server file for selected version on [Minecraft](https://minecraft.net/) page.
+
+### **WARNING! Do not check *ngrok* if you didn't input your token in First start.bat file**
+
+To run app later use *"Run.bat"*
+
+If you have git installed you can update the app by running *"Update.bat"* file.
 
 If you encounter any bugs while using the program, hit *CTRL+R* to reload program.
 
@@ -41,3 +48,8 @@ If you encounter any bugs while using the program, hit *CTRL+R* to reload progra
 > gonna write it later
 
 ### **Special thanks to [*SaintKappa*](https://github.com/theSaintKappa) who helped me sometimes while writing the program.**
+
+### **TODO:**
+* built-in file editor,
+* tree file explorer,
+* executing commands to running server,

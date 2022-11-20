@@ -3,9 +3,9 @@ const path = require('path');
 const glob = require('glob');
 const { CLIENT_RENEG_LIMIT } = require('tls');
 const { shell } = require('electron');
-let configPath = "./appconfig.json"
+let configPath = path.join(__dirname, "../appconfig.json")
 let config = JSON.parse(fs.readFileSync(configPath));
-
+const spawnObj = require('child_process').spawn;
 
 const javaVer = document.querySelector("[data-javaVer]");
 let option, selectedJava, serverOption, wrongCounter = 0, serverDirectoryContent = "";
@@ -51,6 +51,14 @@ document.querySelector("[data-load]").addEventListener('click', () => {
   document.querySelector('[data-serverFile]').value = config.server;
   document.querySelector('[data-min]').value = config.ramMin;
   document.querySelector('[data-max]').value = config.ramMax;
+  ngrokState = config.ngrokState;
+  gui = config.gui;
+  if(ngrokState){
+    document.querySelector('[data-ngrok]').setAttribute('checked', '');
+  }
+  if(gui == ''){
+    document.querySelector('[data-gui]').setAttribute('checked', '');
+  }
 })
 let ramMinSel = "-Xms"+document.querySelector('[data-min]').value+"G";
 let ramMaxSel = "-Xmx"+document.querySelector('[data-max]').value+"G";
@@ -68,7 +76,9 @@ document.querySelector("[data-bs-start]").addEventListener('click', () => {
           java: document.querySelector('[data-javaVer]').value,
           server: document.querySelector('[data-serverFile]').value,
           ramMin: document.querySelector('[data-min]').value,
-          ramMax: document.querySelector('[data-max]').value
+          ramMax: document.querySelector('[data-max]').value,
+          ngrokState: ngrokState, 
+          gui: gui
         };
       
         let settings_data = JSON.stringify(configsettings, null, 2);
@@ -139,7 +149,7 @@ document.querySelector("[data-ngrok]").addEventListener('change', (event)=>{
   }
 })
 
-fs.readdir('./server/', (err, serverDirectory) => {
+fs.readdir('./server/', (err) => {
   glob('./server/+(*.json|*.properties|*.txt)', {}, (err, serverDirectory)=>{
     for(var i = 0; i<serverDirectory.length;i++){
       serverDirectory[i] = serverDirectory[i].replace('./server/', '')
@@ -147,11 +157,15 @@ fs.readdir('./server/', (err, serverDirectory) => {
     }
     document.querySelector('[data-browser]').innerHTML = serverDirectoryContent
     document.querySelectorAll(".browser-content").forEach(browserFile => browserFile.addEventListener("click", ()=>{
-      let browserOpen = path.join(__dirname+"\\server\\"+browserFile.value);
-      let browserCmd = `start cmd /k "notepad ${browserOpen}"\nexit /s`
-      console.log(browserCmd);
-      fs.writeFileSync(__dirname+"/batches/browsercache.bat", browserCmd);
-      shell.openPath(__dirname+"/batches/browsercache.bat")
+      let browserOpen = path.join(__dirname, "../server/"+browserFile.value);
+      spawnObj('C:\\windows\\notepad.exe', [browserOpen]);
     }));
   });
 });
+
+document.querySelector("[data-rootFolder]").addEventListener('click', ()=>{
+  shell.openPath(path.join(__dirname, '../'))
+})
+document.querySelector("[data-serverFolder]").addEventListener('click', ()=>{
+  shell.openPath(path.join(__dirname, '../server/'))
+})

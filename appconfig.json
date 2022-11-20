@@ -1,6 +1,8 @@
 {
   "java": "jdk-17.0.4.1",
   "server": "server.jar",
-  "ramMin": "3",
-  "ramMax": "5"
+  "ramMin": "2",
+  "ramMax": "4",
+  "ngrokState": false,
+  "gui": ""
 }
