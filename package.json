@@ -20,6 +20,7 @@
     "electron": "^20.2.0"
   },
   "dependencies": {
+    "bootstrap-icons": "^1.10.2",
     "glob": "^8.0.3",
     "monaco-editor": "^0.34.1"
   }

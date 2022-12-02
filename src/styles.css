@@ -46,18 +46,18 @@ input[type="button"]{
      border-radius: .4rem;
      box-shadow: #242424 .2rem .2rem;
 }
-select{
+#main > select{
      font-size: .8rem;
      width: 20rem;
      height: 2.3rem;
 }
-input[type="checkbox"]{
+#main > input[type="checkbox"]{
      accent-color: #d4d4d4;
 }
 [data-load]{
      margin-left: 7rem !important; 
 }
-span, strong{
+#main > span, strong{
      text-shadow: #000 1.6px 1.2px;
 }
 input[type="button"]:active{
@@ -76,4 +76,24 @@ input[type="button"]:active{
      border: .3rem rgba(255,255,255, .8) solid;
      padding: .5rem;
      border-radius: .3rem;
+}
+
+.first{
+     margin: auto;
+     width: 20rem;
+     margin-top: 2rem;
+     font-size: 1.5rem;
+}
+.second-page{
+     width:40rem;
+}
+#holder{
+     /* width:40rem; */
+     /* height:10rem; */
+     text-align: center;
+     /* vertical-align: middle; */
+     padding: 6rem;
+     background-color: rgba(0, 225, 250, .7);
+     border-radius: .5vh;
+     border: rgba(0, 225, 250, .8) dashed .5rem;
 }

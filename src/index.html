@@ -7,7 +7,20 @@
     <title>Minecraft server creator</title>
   </head>
   <body>
-  <section id="main">
+  <!-- Welcome page -->
+  <section class="first first-page" hidden="">
+    <h1 style="text-align:center; font-size:5rem;">Hello!</h1>
+    <h5 style="text-align:center; font-size:1rem;">At first I want to thank you for downloading my app. <br> It really means much to me ❤️</h5> <br>
+    <h4>First things first, let's set all necessary things up.</h4>
+    <input type="button" value="Let's go!" style="margin:0; width:100%; height:3rem; font-size:2rem;">
+  </section>
+  <!-- Second page -->
+  <section class="first second-page" hidden="">
+    <p>So, first download server file from official Minecraft site. <br> If you've done that already please open server folder with button below and drop this file here.</p><br>
+    <input type="button" value="">
+  </section>
+  <!-- Main app -->
+  <section id="main" >
     <input type="button" value="Load settings" data-load><br>
     <select data-javaVer></select><br>
     <select data-serverFile></select><br>
@@ -19,7 +32,7 @@
     <span>Min: </span><input type="number" data-min value="2">
     <span>Max: </span><input type="number" data-max value="4"><br>  
     <span>GUI: </span><input type="checkbox" data-gui><br>
-    <span>Ngrok: </span><input type="checkbox" data-ngrok><strong>DO NOT CHECK UNLESS YOU TYPED IN YOUR TOKEN</strong><br>
+    <span>Ngrok: </span><input type="checkbox" data-ngrok><br>
   </section>
     <input type="checkbox" name="remember" data-remember><span id="remember">Remember settings </span><br>
     <input type="button" value="Start" data-bs-start>
