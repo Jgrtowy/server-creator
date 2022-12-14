@@ -9,23 +9,49 @@ let config = JSON.parse(fs.readFileSync(configPath));
 const spawnObj = require('child_process').spawn;
 const os = require ('os');
 
+
 // variables
 
 const javaVer = document.querySelector("[data-javaVer]");
 let option, selectedJava, serverOption, wrongCounter = 0, serverDirectoryContent = "", driveLetter = "c";
-driveLetter = driveLetter.toUpperCase();
 const username = os.userInfo ().username;
-
 // create necessary files and directories
 
 if (!fs.existsSync('./server/')){
   fs.mkdirSync('./server/');
 }
+
+// check if ignore.txt file still exists
+// if(fs.existsSync('./src/ignore.txt')){
+//   document.querySelector('#main').setAttribute('hidden', '');
+//   document.querySelector('.first-page').removeAttribute('hidden')
+// }
 // =======
 // Welcome page
 // =======
-document.querySelector('input[value="Let\'s go!"]').addEventListener('click', ()=>{
+
+
+document.querySelector('[data-welcome-letsgo]').addEventListener('click', ()=>{
   document.querySelector('.first-page').setAttribute('hidden', '');
+  document.querySelector('.second-page').removeAttribute('hidden');
+})
+
+document.querySelector('[data-welcome-openServer]').addEventListener('click', ()=>{
+  shell.openPath(path.join(__dirname, '../server/'))
+})
+
+
+const drive = document.querySelector('[data-welcome-drive]');
+document.querySelector('[data-welcome-done]').addEventListener('click', ()=>{
+  if(drive.value.isNaN){
+    if(!drive.value == null){
+      driveLetter = drive.value;
+    }
+    document.querySelector('.second-page').setAttribute('hidden', '')
+    document.querySelector('#main').removeAttribute('hidden')
+    driveLetter = driveLetter.toUpperCase();
+    console.log(driveLetter);
+  }
 })
 
 // =======
@@ -91,7 +117,6 @@ document.querySelector("[data-bs-start]").addEventListener('click', () => {
     // TODO: ask for default drive letter
     const javaDir = 'C:\\Progra~1\\Java\\'+selectedJava+'\\bin\\java.exe'
     var command = `start cmd /k "${javaDir} ${ramMinSel} ${ramMaxSel} -jar ${selectedServer} ${gui}"`;
-    console.log(command);
     // save settings if remember is checked
     if(document.querySelector('[data-remember]').checked){
       let configsettings = {
@@ -177,7 +202,7 @@ document.querySelector("[data-ngrok]").addEventListener('change', (event)=>{
 
 // create file explorer menu
 fs.readdir('./server/', () => {
-  glob('./server/+(*.json|*.properties|*.txt)', {}, (serverDirectory)=>{
+  glob('./server/+(*.json|*.properties|*.txt)', {}, (err, serverDirectory)=>{
     for(var i = 0; i<serverDirectory.length;i++){
       serverDirectory[i] = serverDirectory[i].replace('./server/', '')
       serverDirectoryContent += '<input type="button" class="browser-content" value="'+serverDirectory[i]+'"style="font-size: 30px; font-size: .6vw;">';
@@ -203,8 +228,7 @@ document.querySelector("[data-serverFolder]").addEventListener('click', ()=>{
 const ngrokymlPath = `${driveLetter}:/Users/${username}/Appdata/Local/ngrok/*.yml`
 
 // read this directory
-glob(ngrokymlPath, {}, (ngrokYaml)=>{
-  console.log(driveLetter);
+glob(ngrokymlPath, {}, (err, ngrokYaml)=>{
   if(ngrokYaml.length==0){
     // enable checkbox if file exists
     document.querySelector('[data-ngrok]').setAttribute('disabled', '')
@@ -217,3 +241,7 @@ glob(ngrokymlPath, {}, (ngrokYaml)=>{
 });
 
 // TODO: make load settings more "resistant", end welcome page
+
+// ========
+// Logs section
+// ========

@@ -12,42 +12,44 @@
     <h1 style="text-align:center; font-size:5rem;">Hello!</h1>
     <h5 style="text-align:center; font-size:1rem;">At first I want to thank you for downloading my app. <br> It really means much to me ❤️</h5> <br>
     <h4>First things first, let's set all necessary things up.</h4>
-    <input type="button" value="Let's go!" style="margin:0; width:100%; height:3rem; font-size:2rem;">
+    <input type="button" value="Get started!" style="margin:0; width:100%; height:3rem; font-size:2rem;" data-welcome-letsgo>
   </section>
   <!-- Second page -->
   <section class="first second-page" hidden="">
-    <p>So, first download server file from official Minecraft site. <br> If you've done that already please open server folder with button below and drop this file here.</p><br>
-    <input type="button" value="">
+    <p>So, first download server file from official Minecraft site. <br> If you've done that already please open server folder with button below, drop this file here and come back to the app.</p>
+    <input type="button" value="Open server folder" style="width:100%; margin:0; height:5rem; font-size:2rem;" data-welcome-openServer><br><br>
+    <p>Also please type in your default drive letter.</p>
+    <p>If it's other than "C" you can skip this part.</p>
+    <input type="text" style="width:4vw; height:4vw; font-size:2vw; margin:0;" data-welcome-drive><br><br>
+    <input type="button" value="Done!" style="width:100%; margin:0; height:5rem; font-size:2rem;" data-welcome-done>
   </section>
   <!-- Main app -->
-  <section id="main" >
+  <section id="main">
     <input type="button" value="Load settings" data-load><br>
     <select data-javaVer></select><br>
     <select data-serverFile></select><br>
     <input type="checkbox" name="advanced" data-advanced id="adv"><span id="advanced">Advanced settings</span><br>
     <section data-advancedSection hidden="">
-    <span>RAM: </span><br>
-    <input type="radio" name="gb-mb"checked value="0"><span>GB</span>
-    <input type="radio" name="gb-mb" value="1"><span>MB</span><br>
-    <span>Min: </span><input type="number" data-min value="2">
-    <span>Max: </span><input type="number" data-max value="4"><br>  
-    <span>GUI: </span><input type="checkbox" data-gui><br>
-    <span>Ngrok: </span><input type="checkbox" data-ngrok><br>
-  </section>
+      <span>RAM: </span><br>
+      <input type="radio" name="gb-mb"checked value="0"><span>GB</span>
+      <input type="radio" name="gb-mb" value="1"><span>MB</span><br>
+      <span>Min: </span><input type="number" data-min value="2">
+      <span>Max: </span><input type="number" data-max value="4"><br>  
+      <span>GUI: </span><input type="checkbox" data-gui><br>
+      <span>Ngrok: </span><input type="checkbox" data-ngrok><br>
+    </section>
     <input type="checkbox" name="remember" data-remember><span id="remember">Remember settings </span><br>
     <input type="button" value="Start" data-bs-start>
     <input type="button" value="Stop" data-stop><br><br>
     <input type="button" value="Open server folder" style="font-size: .6vw" data-serverFolder>
     <input type="button" value="Open root folder" style="font-size: .6vw" data-rootFolder><br><br>
-
     <div style="text-align: center;"><span>Click file below you want to open in notepad</span></div>
     <div data-browser>
     </div>
   </section>
-    
-    <!-- <textarea id="editor" data-editor placeholder="Select file above to edit it"></textarea><br> -->
-    <!-- <input type="button" value="Save" data-save> -->
-    <span data-success></span>
+  <section id="logsSection">
+    <code id="logs"></code>
+  </section>
     <script defer src="./renderer.js" type="module"></script>
   </body>
 </html>

@@ -7,6 +7,7 @@
 
 ###### Please don't complain bout' my stupid code.
 
+# **I'm currently making changes to do the app as simpliest as possible. Tutorial below will work for now.**
 ## **How to run the program**
 
 ## **Dependencies**
@@ -53,3 +54,4 @@ If you encounter any bugs while using the program, hit *CTRL+R* to reload progra
 * built-in file editor,
 * tree file explorer,
 * executing commands to running server,
+* welcome page with introduction, configuration, etc.

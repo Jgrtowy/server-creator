@@ -51,7 +51,7 @@ input[type="button"]{
      width: 20rem;
      height: 2.3rem;
 }
-#main > input[type="checkbox"]{
+#main, .third-page > input[type="checkbox"]{
      accent-color: #d4d4d4;
 }
 [data-load]{
@@ -96,4 +96,11 @@ input[type="button"]:active{
      background-color: rgba(0, 225, 250, .7);
      border-radius: .5vh;
      border: rgba(0, 225, 250, .8) dashed .5rem;
+}
+.third-page > input[type="checkbox"]{
+     margin: 0;
+}
+.third-page > span{
+     font-size: 1.2rem;
+     margin-left: .5rem;
 }
