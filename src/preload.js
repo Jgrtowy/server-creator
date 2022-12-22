@@ -5,6 +5,7 @@
  * 
  * https://www.electronjs.org/docs/latest/tutorial/sandbox
  */
+const { ipcRenderer } = require('electron');
 window.addEventListener('DOMContentLoaded', () => {
   const replaceText = (selector, text) => {
     const element = document.getElementById(selector)
@@ -14,4 +15,8 @@ window.addEventListener('DOMContentLoaded', () => {
   for (const type of ['chrome', 'node', 'electron']) {
     replaceText(`${type}-version`, process.versions[type])
   }
+  
+  document.querySelector('#exit').addEventListener('click', () => {
+    ipcRenderer.invoke('quit-app');
+  });
 })

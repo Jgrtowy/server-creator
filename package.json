@@ -1,12 +1,12 @@
 {
-  "name": "electron-quick-start",
+  "name": "server-creator",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Server creation tool for Minecraft",
   "main": "./src/main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/jgrtowy/server-creator",
   "keywords": [
     "Electron",
     "quick",
@@ -14,14 +14,14 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Jgrtowy",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^20.2.0"
   },
   "dependencies": {
-    "bootstrap-icons": "^1.10.2",
     "glob": "^8.0.3",
-    "monaco-editor": "^0.34.1"
+    "os": "^0.1.2",
+    "ps-node": "^0.1.6"
   }
 }

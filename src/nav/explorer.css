@@ -1,0 +1,49 @@
+#explorer{
+     width: 60vw;
+     height: 80vh;
+     color: #fff;
+     background-color: #242424;
+     border: .3rem solid #fff;
+     border-radius: 2rem;
+     padding: 1vw;
+}
+#currentPath{
+     background-color: #111;
+     font-family: 'consolas';
+}
+.navbtns{
+     background-color: transparent;
+     padding: 0;
+     border: .2rem solid #fff;
+     border-radius: .4rem;
+}
+.explorerItemCSS{
+     font-size: 2rem;
+     border-radius: .4rem;
+     border: .2rem solid #fff;
+     padding: .3rem;
+     margin: .5rem 0;
+}
+.explorerItemCSS:nth-child(1){
+     margin-top: -.5rem;
+}
+.explorerItemCSS:nth-last-child(1){
+     margin-bottom: -.5rem;
+}
+.explorerItemCSS:hover{
+     background-color: #343434;
+     transition-duration: .25s;
+}
+div[data-browser]{
+     overflow: auto;
+     height: 60vh;
+     padding: .5rem;
+     background-color: 10px #fff solid;
+}
+::-webkit-scrollbar{
+     background-color: transparent;
+}
+::-webkit-scrollbar-thumb{
+     background-color: #565656;
+     border-radius: 5rem;
+}

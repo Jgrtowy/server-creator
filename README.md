@@ -5,9 +5,7 @@
 
 #### I used [this](https://github.com/electron/electron-quick-start/) as template.
 
-###### Please don't complain bout' my stupid code.
-
-# **I'm currently making changes to do the app as simpliest as possible. Tutorial below will work for now.**
+# **Disclaimer: I'm currently doing changes to make the app as simpliest as possible. Tutorial below will work for now.**
 ## **How to run the program**
 
 ## **Dependencies**
@@ -32,26 +30,20 @@ After downloading files to destination folder open *"First start.bat"*, this wil
 
 ## **Running**
 
-After running *"First start.bat"* open the installation folder by clicking *"Open server folder"* button in app and put MC server file here.
+Open *"First start.bat"* if you're trying to run app for the first time. 
+
+For next step open *"Run.bat"* file and drop downloaded *"server.jar"* into *"server"* folder in root directory. Then click *CTRL+R* to restart app and click **Start** button if you're ready to go.
 
 You can find official server file for selected version on [Minecraft](https://minecraft.net/) page.
 
-### **WARNING! Do not check *ngrok* if you didn't input your token in First start.bat file**
+There is advanced settings checkbox below server file selector. Here you can f.e. select min and max ram for server.
 
-To run app later use *"Run.bat"*
+## ***More to be coming!***
 
-If you have git installed you can update the app by running *"Update.bat"* file.
-
-If you encounter any bugs while using the program, hit *CTRL+R* to reload program.
+If you encounter any bugs while using the program, hit *CTRL+R* to reload program, and if they're occuring frequently you can post it at project's Issues tab on Github. I'll really appreciate it! ❤️
 
 ### **For forge or fabric**
 
-> gonna write it later
+So, these 2 mod loaders have they're own installation process. I'll write guide to them as I finally finish app. For now you need to follow tutorial put on official sites of them. Sorry for that!
 
-### **Special thanks to [*SaintKappa*](https://github.com/theSaintKappa) who helped me sometimes while writing the program.**
-
-### **TODO:**
-* built-in file editor,
-* tree file explorer,
-* executing commands to running server,
-* welcome page with introduction, configuration, etc.
+## **Special thanks to [*SaintKappa*](https://github.com/theSaintKappa) who helped me sometimes while writing the program.**

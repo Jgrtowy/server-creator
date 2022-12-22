@@ -1,20 +1,20 @@
 // modules
 
+const { shell, app, remote, BrowserWindow } = require('electron');
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
-const { shell } = require('electron');
 let configPath = path.join(__dirname, "../appconfig.json")
 let config = JSON.parse(fs.readFileSync(configPath));
 const spawnObj = require('child_process').spawn;
 const os = require ('os');
-
+const {exec, spawn} = require('child_process')
 
 // variables
 
 const javaVer = document.querySelector("[data-javaVer]");
-let option, selectedJava, serverOption, wrongCounter = 0, serverDirectoryContent = "", driveLetter = "c";
-const username = os.userInfo ().username;
+let option, serverOption, wrongCounter = 0, serverDirectoryContent = "", driveLetter = "c";
+const username = os.userInfo().username;
 // create necessary files and directories
 
 if (!fs.existsSync('./server/')){
@@ -22,14 +22,31 @@ if (!fs.existsSync('./server/')){
 }
 
 // check if ignore.txt file still exists
-// if(fs.existsSync('./src/ignore.txt')){
-//   document.querySelector('#main').setAttribute('hidden', '');
-//   document.querySelector('.first-page').removeAttribute('hidden')
-// }
+
+if(fs.existsSync('./src/ignore.txt')){
+  document.querySelector('#main').setAttribute('hidden', '');
+  document.querySelector('.first-page').removeAttribute('hidden')
+}
+
 // =======
 // Welcome page
 // =======
 
+// define path to ngrok config file
+const ngrokymlPath = `${driveLetter}:/Users/${username}/Appdata/Local/ngrok/*.yml`
+
+// read this directory
+glob(ngrokymlPath, {}, (err, ngrokYaml)=>{
+  if(ngrokYaml.length==0){
+    // enable checkbox if file exists
+    document.querySelector('[data-ngrok]').setAttribute('disabled', '')
+    document.querySelector('[data-ngrok]').removeAttribute('checked')
+  }
+  else{
+    // if file doesn't exist then disable ngrok checkbox
+    document.querySelector('[data-ngrok]').removeAttribute('disabled')
+  }
+});
 
 document.querySelector('[data-welcome-letsgo]').addEventListener('click', ()=>{
   document.querySelector('.first-page').setAttribute('hidden', '');
@@ -40,18 +57,18 @@ document.querySelector('[data-welcome-openServer]').addEventListener('click', ()
   shell.openPath(path.join(__dirname, '../server/'))
 })
 
-
-const drive = document.querySelector('[data-welcome-drive]');
-document.querySelector('[data-welcome-done]').addEventListener('click', ()=>{
-  if(drive.value.isNaN){
-    if(!drive.value == null){
-      driveLetter = drive.value;
-    }
-    document.querySelector('.second-page').setAttribute('hidden', '')
-    document.querySelector('#main').removeAttribute('hidden')
-    driveLetter = driveLetter.toUpperCase();
-    console.log(driveLetter);
+exec('wmic logicaldisk get name', (error, stdout, stderr) => {
+  const drives = stdout.match(/[A-Z]:/g)
+  for(var i = 0; i<drives.length; i++){
+    document.querySelector('[data-welcome-drives]').innerHTML+=`<option value="${drives[i]}">${drives[i]}</option>`
   }
+})
+
+document.querySelector('[data-welcome-done]').addEventListener('click', ()=>{
+  driveLetter = document.querySelector('[data-welcome-drives]').value;
+  document.querySelector('.second-page').setAttribute('hidden', '')
+  document.querySelector('#main').removeAttribute('hidden')
+  fs.rmSync('./src/ignore.txt')
 })
 
 // =======
@@ -116,7 +133,8 @@ document.querySelector("[data-bs-start]").addEventListener('click', () => {
     // define java directory
     // TODO: ask for default drive letter
     const javaDir = 'C:\\Progra~1\\Java\\'+selectedJava+'\\bin\\java.exe'
-    var command = `start cmd /k "${javaDir} ${ramMinSel} ${ramMaxSel} -jar ${selectedServer} ${gui}"`;
+    let command = `${javaDir} ${ramMinSel} ${ramMaxSel} -jar ${selectedServer} ${gui}`;
+    let batch = `start "Server" /D "${(path.join(__dirname,'../server/'))}" server.bat`
     // save settings if remember is checked
     if(document.querySelector('[data-remember]').checked){
       let configsettings = {
@@ -125,21 +143,28 @@ document.querySelector("[data-bs-start]").addEventListener('click', () => {
         ramMin: document.querySelector('[data-min]').value,
         ramMax: document.querySelector('[data-max]').value,
         ngrokState: ngrokState,
-        gui: gui
+        gui: gui,
+        driveLetter: driveLetter
       };
       let settings_data = JSON.stringify(configsettings, null, 2);
       fs.writeFileSync("appconfig.json", settings_data);
     }
+
+    
+
+    
     // if ngrok is on, open bat
     if(ngrokState == true){
       shell.openPath(path.join(__dirname+"../batches/ngrok.bat"))
     }
-    // write server.bat file with command, open it, then create eula = true file
-    glob('./server/*.bat', {}, ()=>{
-      fs.writeFileSync(path.join(__dirname, '../server/server.bat'), command, 'utf-8');
-      shell.openPath(path.join(__dirname, '../server/server.bat'));
-      fs.writeFileSync('./server/eula.txt', 'eula = true', 'utf-8');
-    });
+
+    // write some batches
+    fs.writeFileSync(path.join(__dirname, '../server/server.bat'), command, 'utf-8');
+    fs.writeFileSync(path.join(__dirname, '../batches/start.bat'), batch, 'utf-8');
+    fs.writeFileSync(path.join(__dirname, '../server/eula.txt'), 'eula = true', 'utf-8');
+    
+    // execute batch and start
+    exec(path.join(__dirname, '../batches/start.bat'))
   }else{
     console.warn("Something's wrong, check your selections once again.");
   }
@@ -196,52 +221,20 @@ document.querySelector("[data-ngrok]").addEventListener('change', (event)=>{
   }
 })
 
-// ========
-// Explorer
-// ========
-
-// create file explorer menu
-fs.readdir('./server/', () => {
-  glob('./server/+(*.json|*.properties|*.txt)', {}, (err, serverDirectory)=>{
-    for(var i = 0; i<serverDirectory.length;i++){
-      serverDirectory[i] = serverDirectory[i].replace('./server/', '')
-      serverDirectoryContent += '<input type="button" class="browser-content" value="'+serverDirectory[i]+'"style="font-size: 30px; font-size: .6vw;">';
-    }
-    document.querySelector('[data-browser]').innerHTML = serverDirectoryContent
-    document.querySelectorAll(".browser-content").forEach(browserFile => browserFile.addEventListener("click", ()=>{
-      let browserOpen = path.join(__dirname, "../server/"+browserFile.value);
-      spawnObj('C:\\windows\\notepad.exe', [browserOpen]);
-    }));
-  });
-});
 
 // buttons for root and server folders
-document.querySelector("[data-rootFolder]").addEventListener('click', ()=>{
-  shell.openPath(path.join(__dirname, '../'))
-})
-document.querySelector("[data-serverFolder]").addEventListener('click', ()=>{
-  shell.openPath(path.join(__dirname, '../server/'))
-})
-
-
-// define path to ngrok config file
-const ngrokymlPath = `${driveLetter}:/Users/${username}/Appdata/Local/ngrok/*.yml`
-
-// read this directory
-glob(ngrokymlPath, {}, (err, ngrokYaml)=>{
-  if(ngrokYaml.length==0){
-    // enable checkbox if file exists
-    document.querySelector('[data-ngrok]').setAttribute('disabled', '')
-    document.querySelector('[data-ngrok]').removeAttribute('checked')
-  }
-  else{
-    // if file doesn't exist then disable ngrok checkbox
-    document.querySelector('[data-ngrok]').removeAttribute('disabled')
-  }
-});
-
-// TODO: make load settings more "resistant", end welcome page
 
 // ========
 // Logs section
 // ========
+
+// setInterval(() => {
+//   fs.readFile(path.join(__dirname, '../server/logs/latest.log'), 'utf8', (error, data) => {
+//     if (error) {
+//       console.error(error);
+//       return;
+//     }
+//     // console.log(data);
+//     document.querySelector('#logs').innerHTML = data;
+//   });
+// }, 300);

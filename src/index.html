@@ -10,20 +10,30 @@
   <!-- Welcome page -->
   <section class="first first-page" hidden="">
     <h1 style="text-align:center; font-size:5rem;">Hello!</h1>
-    <h5 style="text-align:center; font-size:1rem;">At first I want to thank you for downloading my app. <br> It really means much to me ❤️</h5> <br>
-    <h4>First things first, let's set all necessary things up.</h4>
+    <h4 style="text-align:center;">At first I want to thank you for downloading my app. <br> It really means much to me ❤️</h4> <br>
+    <h3 style="text-align:center;">First things first, let's set all necessary things up.</h3><br>
     <input type="button" value="Get started!" style="margin:0; width:100%; height:3rem; font-size:2rem;" data-welcome-letsgo>
   </section>
   <!-- Second page -->
   <section class="first second-page" hidden="">
     <p>So, first download server file from official Minecraft site. <br> If you've done that already please open server folder with button below, drop this file here and come back to the app.</p>
     <input type="button" value="Open server folder" style="width:100%; margin:0; height:5rem; font-size:2rem;" data-welcome-openServer><br><br>
-    <p>Also please type in your default drive letter.</p>
-    <p>If it's other than "C" you can skip this part.</p>
-    <input type="text" style="width:4vw; height:4vw; font-size:2vw; margin:0;" data-welcome-drive><br><br>
-    <input type="button" value="Done!" style="width:100%; margin:0; height:5rem; font-size:2rem;" data-welcome-done>
+    <p>Please select your default drive letter.</p>
+    <select type="text" style="width:4rem; height:4rem; font-size:2rem; margin:0;" data-welcome-drives></select><br><br>
+    <br><input type="button" value="Done!" style="width:100%; margin:0; height:5rem; font-size:2rem;" data-welcome-done>
   </section>
   <!-- Main app -->
+  <div id="navbar">
+    <ul>
+    <li class="navel"><img src="../public/home.svg"><a>Home</a></li>
+    <li class="navel"><img src="../public/gear.svg"><a href="./nav/server.html">Server settings</a></li>
+    <li class="navel"><img src="../public/logs.svg"><a href="./nav/logs.html">Logs</a></li>
+    <li class="navel"><img src="../public/folder.svg"><a href="./nav/explorer.html">File explorer</a></li>
+    <li class="navel"><img src="../public/user.svg"><a href="./nav/user.html">User settings</a></li>
+    </ul>
+  </div>
+  <div id="exit"><img src="../public/exit.svg"></div>
+
   <section id="main">
     <input type="button" value="Load settings" data-load><br>
     <select data-javaVer></select><br>
@@ -34,21 +44,16 @@
       <input type="radio" name="gb-mb"checked value="0"><span>GB</span>
       <input type="radio" name="gb-mb" value="1"><span>MB</span><br>
       <span>Min: </span><input type="number" data-min value="2">
-      <span>Max: </span><input type="number" data-max value="4"><br>  
+      <span>Max: </span><input type="number" data-max value="4"><br>
       <span>GUI: </span><input type="checkbox" data-gui><br>
       <span>Ngrok: </span><input type="checkbox" data-ngrok><br>
     </section>
     <input type="checkbox" name="remember" data-remember><span id="remember">Remember settings </span><br>
     <input type="button" value="Start" data-bs-start>
-    <input type="button" value="Stop" data-stop><br><br>
-    <input type="button" value="Open server folder" style="font-size: .6vw" data-serverFolder>
-    <input type="button" value="Open root folder" style="font-size: .6vw" data-rootFolder><br><br>
-    <div style="text-align: center;"><span>Click file below you want to open in notepad</span></div>
-    <div data-browser>
-    </div>
-  </section>
-  <section id="logsSection">
-    <code id="logs"></code>
+    <input type="button" value="Stop" data-stop><br>
+    <span id="eula">By clicking start, you're agreeing to <a href="https://account.mojang.com/documents/minecraft_eula">Minecraft EULA</a></span><br><br>
+    
+    
   </section>
     <script defer src="./renderer.js" type="module"></script>
   </body>

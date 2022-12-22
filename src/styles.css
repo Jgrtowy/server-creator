@@ -8,9 +8,14 @@
      box-sizing: border-box;
      font-family:'Nunito Sans', 'Helvetica', sans-serif;
 }
-body{
+body {
+     position: relative;
      background-color: #242424;
-     color: #fff;
+     transition: background-color 400ms;
+     overflow-x: hidden;
+     background-image: radial-gradient(#d4d4d4 8%, transparent 8%);
+     background-position: 0% 0%;
+     background-size: 2.75vmin 2.75vmin;
 }
 select{
      border: .03rem solid #000;
@@ -24,13 +29,20 @@ select:disabled{
 #editor::placeholder{
      color:#c8c8c8;
 }
+body{
+     display: grid;
+     place-content: center;
+     grid-auto-flow: column;
+     min-height: 100vh;
+
+}
 #main{
-     margin: auto;
      width: 30rem;
-     height: 50rem;
-     background-color: rgba(255,255,255, .5);
-     border: .3rem rgba(255,255,255, .8) solid;
+     height: fit-content;
+     background-color: #242424;
+     border: .3rem solid #fff;
      padding: 4.4rem;
+     color: #fff;
      padding-top: .9rem;
      border-radius: 3rem;
 }
@@ -87,11 +99,11 @@ input[type="button"]:active{
 .second-page{
      width:40rem;
 }
+.first-page{
+    width:40rem;
+}
 #holder{
-     /* width:40rem; */
-     /* height:10rem; */
      text-align: center;
-     /* vertical-align: middle; */
      padding: 6rem;
      background-color: rgba(0, 225, 250, .7);
      border-radius: .5vh;
@@ -103,4 +115,98 @@ input[type="button"]:active{
 .third-page > span{
      font-size: 1.2rem;
      margin-left: .5rem;
+}
+.second-page > input[type="text"]{
+     width: 100%;
+     height: 2.3rem;
+     font-size: 1.8rem;
+     margin: 0;
+}
+#main > input[type="radio"]{
+     accent-color: none;
+}
+
+#eula{
+     font-weight: bold;
+     font-size: 1.3rem;
+}
+#eula > a{
+     color: #0d3fc7;
+}
+#logsSection{
+     height: 50vh;
+     background-color: #fff;
+     margin-left: 10rem;
+     padding: 1rem;
+     width: 25vw;
+}
+#logs{
+     height: 20vh;
+     width: 100%;
+     background-color: #242424;
+     color: #fff;
+     font-family: 'Consolas';
+     overflow: auto;
+     
+}
+
+
+#navbar {
+     /* height: 100%; */
+     height: fit-content;
+     position: fixed;
+     z-index: 1;
+     top: 0;
+     left: 0;
+     background-color: #242424;
+     overflow-x: hidden;
+     width: 15vw;
+     padding: 0 1vw 0 1vw;
+}
+ul{
+     list-style-type: none;
+}
+.navel > a{
+     text-decoration: none;
+     color: #fff;
+     font-size: 1.3vw;
+     align-items: center;
+}
+.navel > img{
+     padding: 0 .5vw 0 .5vw;    
+}  
+.navel{
+     display: flex;
+     width: 100%;
+     height: fit-content;
+     margin: 1vw 0 1vw 0 ;
+     padding: 0.5vh;
+     border: .3rem solid #fff;
+     border-radius: 1rem;
+}
+.navel:hover{
+     background-color: #444;
+     transition-duration: .25s;
+}
+#exit{
+     color: #fff;
+     font-size: 1.3vw;
+     align-items: center;
+     list-style-type: none;
+     display: flex;
+     width: 3.2%;
+     aspect-ratio: 1/1;
+     /* height: fit-content; */
+     /* margin: 1vw 0 1vw 0 ; */
+     padding: 0.3vw;
+     border-radius: 1rem;
+     background-color: #242424;
+     border: .3rem solid #8b0000;
+     bottom: 1vh;
+     left: 1vh;
+     position: absolute;
+}
+#exit:hover{
+     background-color: #6b0000;
+     transition-duration: .25s;
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+     <link rel="stylesheet" href="../styles.css">
+     <link rel="stylesheet" href="./explorer.css">
+     <title>Document</title>
+</head>
+<body>
+     <div id="navbar">
+          <ul>
+          <li class="navel"><img src="../../public/home.svg"><a href="../index.html">Home</a></li>
+          <li class="navel"><img src="../../public/gear.svg"><a href="./server.html">Server settings</a></li>
+          <li class="navel"><img src="../../public/logs.svg"><a href="./logs.html">Logs</a></li>
+          <li class="navel"><img src="../../public/folder.svg"><a href="./explorer.html">File explorer</a></li>
+          <li class="navel"><img src="../../public/user.svg"><a href="./user.html">User settings</a></li>
+     </ul>
+     </div>
+     <div id="exit"><img src="../../public/exit.svg"></div>
+
+     <section id="explorer">
+          <h3>Current path<br><code id="currentPath"></code></h3><br>
+          <button id="back" class="navbtns"><img src="../../public/arr-left.svg"></button>
+          <button id="fwd" class="navbtns"><img src="../../public/arr-right.svg"></button><br><br>
+          <div data-browser></div>
+     </section>
+     <script src="./explorer.js" type="module"></script>
+</body>
+</html>
