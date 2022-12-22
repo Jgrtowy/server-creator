@@ -69,7 +69,14 @@ document.querySelector('[data-welcome-done]').addEventListener('click', ()=>{
   document.querySelector('.second-page').setAttribute('hidden', '')
   document.querySelector('#main').removeAttribute('hidden')
   fs.rmSync('./src/ignore.txt')
+
+  const save = {
+    driveLetter: driveLetter
+  };
+  let settings_data = JSON.stringify(save, null, 2);
+  fs.writeFileSync("appconfig.json", save);
 })
+
 
 // =======
 // Main app

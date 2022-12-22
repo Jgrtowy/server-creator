@@ -4,5 +4,6 @@
   "ramMin": "2",
   "ramMax": "4",
   "ngrokState": false,
-  "gui": ""
+  "gui": "-nogui",
+  "driveLetter": "c"
 }

@@ -95,6 +95,11 @@ input[type="button"]:active{
      width: 20rem;
      margin-top: 2rem;
      font-size: 1.5rem;
+     background-color: #242424;
+     border: .3rem solid #fff;
+     padding: 4.4rem;
+     color: #fff;
+     border-radius: 3rem;
 }
 .second-page{
      width:40rem;

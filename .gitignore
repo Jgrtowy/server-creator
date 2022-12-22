@@ -2,3 +2,6 @@ node_modules
 server
 appconfig.json
 .vs
+./batches/ngrok.bat
+./batches/ngrok.exe
+./batches/start.bat
